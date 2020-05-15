@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <time.h>
 #include "Tsp_map.h"
 
 using namespace std; 
@@ -37,22 +38,18 @@ void brute_force_solver(Tsp_map& cities) {
 
 int main(void) 
 {
-    // example of how to use the brute force function 
-    // 1. declare your Tsp_map of cities
+    // initialize random seed and list of cities
+    srand(10000); 
     Tsp_map cities;
 
-    // 2. add cities with (x, y) coordinates for each
-    cities.add(0, 0);
-    cities.add(10, 0);
-    cities.add(0, 10);
-    //cities.add(10, 10);
-    //cities.add(4, 5);
-    //cities.add(7, 1);
-    //cities.add(9, 2);
-    //cities.add(5, 0);
-    //cities.add(6, 1);
-    //cities.add(5, 5);
-    //cities.add(0, 5);
+    // run the brute force algorithm on a series of 1 - i cities
+    for (int i = 0; i < 8; i++)
+    {
+        cout << "TSP on " << i << "cities: " << endl; 
+
+        // add another randomly generated city to the list and re-run
+        cities.add(rand() % 100, rand() % 100); 
+    }
 
     // 3. call the algorithm you wish to use on the map you created
     brute_force_solver(cities);
