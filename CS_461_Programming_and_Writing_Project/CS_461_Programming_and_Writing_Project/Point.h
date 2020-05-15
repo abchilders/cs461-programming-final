@@ -1,4 +1,5 @@
-// based on the Point class by Toby Donaldson, https://www2.cs.sfu.ca/CourseCentral/125/tjd/oop_intro
+// based on the Point class by Toby Donaldson, 
+// https://www2.cs.sfu.ca/CourseCentral/125/tjd/oop_intro
 
 #pragma once
 #include <ostream>
@@ -56,8 +57,7 @@ public:
 }; 
 
 // operator overload for << Point 
-ostream& operator<<(ostream& out, const Point& p); 
+ostream& operator<<(ostream& out, Point& p); 
 
 // returns the distance between two Points
-double dist(const Point& p, const Point& q); 
-
+double dist(Point& p, Point& q); 
