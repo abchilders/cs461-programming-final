@@ -6,8 +6,7 @@ class Generator
 {
 private:
 	int seed;
-	int size;
-	Tsp_map input; 
+	int size; 
 
 public:
 	// default constructor
@@ -27,6 +26,6 @@ public:
 
 	// produces a random traveling salesman map, to be inputted into one of the 
 	// solution algorithms 
-	void generateTspMap();
+	Tsp_map generateTspMap();
 };
 

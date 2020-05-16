@@ -96,4 +96,5 @@ ostream& operator<<(ostream& out, Tsp_map& map)
 		needs_comma = true; 
 	}
 	out << "}"; 
+	return out; 
 }

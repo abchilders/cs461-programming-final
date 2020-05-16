@@ -5,18 +5,12 @@
 using namespace std::chrono; 
 
 // default constructor
-Solver::Solver() : input(Tsp_map::Tsp_map()), best_route({})
+Solver::Solver() 
 {
 	// empty body
 }
 
-// constructor
-Solver::Solver(Tsp_map new_input) : input(new_input), best_route({})
-{
-	// empty body
-}
-
-void Solver::solve(Route(*algorithm)(Tsp_map& input))
+void Solver::solve(Tsp_map& input, Route(*algorithm)(Tsp_map&)) 
 {
 	// set up the timer 
 	system_clock::time_point start; 
@@ -33,12 +27,9 @@ void Solver::solve(Route(*algorithm)(Tsp_map& input))
 	long long benchmark = duration_cast<milliseconds>(end - start).count();
 	
 	// get the score for this route 
-	double score = input.score(solution); 
+	//double score = input.score(solution); 
 
 	// output results 
-	cout << "Results for map of size " << input.size() << endl; 
-	cout << "Time taken: " << benchmark << endl; 
-	cout << "Original map: " << input << endl; 
-	cout << "Solution: " << solution << endl; 
-	cout << "Distance of solution: " << score << endl; 
+	cout << "Problem size: " << input.size() << endl; 
+	cout << "Time taken: " << benchmark << " ms" << endl;  
 }
