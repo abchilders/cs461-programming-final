@@ -10,6 +10,8 @@
 
 using namespace std; 
 
+typedef Route(*Algorithm)(Tsp_map&);
+
 // the number of runs to do -- CHANGE THIS TO VARY THE NUMBER OF GRAPHS SOLVED
 const int TOTAL_RUNS = 10; 
 
@@ -22,9 +24,8 @@ Route brute_force_solver(Tsp_map& cities);
 // side effect: runs the given algorithm on the problem with increasing sizes, 
 //  then outputs the algorithm used, size, and runtime of each run to the 
 //  screen 
-void dataCollection(int total_runs, Route(*algorithm)(Tsp_map&));
+void dataCollection(int total_runs, unordered_map<string, Algorithm> algorithms);
 
-typedef Route(*Algorithm)(Tsp_map&); 
 int main(void) 
 {   
     // set up a list of solution algorithms  
@@ -32,12 +33,7 @@ int main(void)
     algorithms["Brute force"] = &brute_force_solver; 
 
     // run data collection using all algorithms 
-    for (auto algorithm : algorithms)
-    {
-        cout << algorithm.first << ": " << endl; 
-        cout << "=============================" << endl << endl; 
-        dataCollection(TOTAL_RUNS, algorithm.second); 
-    } 
+    dataCollection(TOTAL_RUNS, algorithms); 
 
 	return 0; 
 }
@@ -63,7 +59,7 @@ Route brute_force_solver(Tsp_map& cities) {
     return best_route;
 }
 
-void dataCollection(int total_runs, Route(*algorithm)(Tsp_map&))
+void dataCollection(int total_runs, unordered_map<string, Algorithm> algorithms)
 {
     // get seed from user 
     // prompt user for seed
@@ -89,9 +85,15 @@ void dataCollection(int total_runs, Route(*algorithm)(Tsp_map&))
         // generate the TSP map for this problem size
         generator.setSize(i); 
         Tsp_map input = generator.generateTspMap(); 
+        cout << "MAP SIZE " << i << endl; 
+        cout << "======================" << endl << endl; 
 
-        // then run the given algorithm on this problem set 
-        Solver::solve(input, algorithm); 
-        cout << endl; 
+        // then run the given algorithms on this same problem set 
+        for (auto algorithm : algorithms)
+        {
+            cout << algorithm.first << "-- " << endl; 
+            Solver::solve(input, algorithm.second);
+            cout << endl;
+        }
     }
 }

@@ -27,9 +27,9 @@ void Solver::solve(Tsp_map& input, Route(*algorithm)(Tsp_map&))
 	long long benchmark = duration_cast<milliseconds>(end - start).count();
 	
 	// get the score for this route 
-	//double score = input.score(solution); 
+	double score = input.score(solution); 
 
 	// output results 
-	cout << "Problem size: " << input.size() << endl; 
-	cout << "Time taken: " << benchmark << " ms" << endl;  
+	cout << "Time taken: " << benchmark << " ms" << endl; 
+	cout << "Distance traveled on solution: " << score << endl; 
 }
