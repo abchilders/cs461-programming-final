@@ -36,5 +36,9 @@ void Solver::solve(Route(*algorithm)(Tsp_map& input))
 	double score = input.score(solution); 
 
 	// output results 
-	// TODO: figure out how to output the Tsp_map itself, too
+	cout << "Results for map of size " << input.size() << endl; 
+	cout << "Time taken: " << benchmark << endl; 
+	cout << "Original map: " << input << endl; 
+	cout << "Solution: " << solution << endl; 
+	cout << "Distance of solution: " << score << endl; 
 }

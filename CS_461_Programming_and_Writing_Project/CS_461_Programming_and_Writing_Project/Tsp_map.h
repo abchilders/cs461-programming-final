@@ -25,6 +25,9 @@ public:
 	// returns # of cities in the map
 	int size() const;
 
+	// returns the list of cities in the map 
+	vector<Point> getCities(); 
+
 	// calculate the distance between cities i and j
 	double dist_between(int i, int j);
 
@@ -39,3 +42,6 @@ public:
 
 // operator overload for << Route 
 ostream& operator<<(ostream& out, const Route& r);
+
+// operator overload for << Tsp_map
+ostream& operator<<(ostream& out, Tsp_map& map); 

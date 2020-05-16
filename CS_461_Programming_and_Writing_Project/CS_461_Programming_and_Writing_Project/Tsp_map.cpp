@@ -32,6 +32,12 @@ int Tsp_map::size() const
 	return cities.size(); 
 }
 
+// returns the list of cities in the map
+vector<Point> Tsp_map::getCities()
+{
+	return cities; 
+}
+
 // calculate the distance between cities i and j 
 double Tsp_map::dist_between(int i, int j)
 {
@@ -74,4 +80,20 @@ ostream& operator<<(ostream& out, const Route& r)
 		out << city << " "; 
 	}
 	return out; 
+}
+
+ostream& operator<<(ostream& out, Tsp_map& map)
+{
+	bool needs_comma = false; 
+	out << "{"; 
+	for (auto city : map.getCities())
+	{
+		if (needs_comma)
+		{
+			out << ","; 
+		}
+		out << city;
+		needs_comma = true; 
+	}
+	out << "}"; 
 }
