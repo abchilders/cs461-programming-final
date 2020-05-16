@@ -1,6 +1,7 @@
 #include "Generator.h"
 #include <time.h>
 #include <iostream>
+#include <string>
 
 // default constructor
 Generator::Generator() : seed(time(NULL)), size(0)
@@ -32,13 +33,14 @@ void Generator::setSize(int new_size)
 	size = new_size; 
 }
 
-// gets user input for seed and size
-void Generator::getUserInput()
+// produces a random traveling salesman map, to be inputted into one of the 
+// solution algorithms 
+void Generator::generateTspMap()
 {
 	// prompt user for seed
 	char enter_seed; 
 	int new_seed = time(NULL); 
-	cout << "Would you like to enter a seed? (y/n)"; 
+	cout << "Would you like to enter a seed? (y/n) "; 
 	cin >> enter_seed; 
 	if (enter_seed == 'y')
 	{
@@ -46,20 +48,15 @@ void Generator::getUserInput()
 		cin >> new_seed;  
 	}
 	seed = new_seed; 
+	srand(seed); 
 
-	// prompt user for size of problem
-	int nodes; 
-	cout << "How many nodes to put in the graph? (try a number between 1 and 10): "; 
-	cin >> nodes; 
-	size = nodes; 
-
+	// generate a random map using given size and seed  
+	for (int i = 0; i < size; i++)
+	{
+		int x = rand() % 100; 
+		int y = rand() % 100; 
+		cout << "i = " << i << ": adding city at (" << x << ", " << y << ")" << endl; 
+		input.add(x, y); 
+	}
 	return; 
-}
-
-// runs the passed-in algorithm and outputs the solution
-void Generator::runAlgorithm(void(*algorithm)(Tsp_map&), Tsp_map cities)
-{
-	algorithm(cities); 
-	// TODO: make the algorithm return the solution as a vector<int>, 
-	// and then output solution in this function 
 }
