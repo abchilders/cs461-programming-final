@@ -7,8 +7,12 @@ Programming and writing project analyzing NP problems and ways to make their sol
 
 ## Files used 
 (sorry for all the Visual Studio stuff :T) 
+- Generator.h
+- Generator.cpp
 - Point.h
 - Point.cpp 
+- Solver.h 
+- Solver.cpp
 - Tsp_map.h
 - Tsp_map.cpp 
 - main.cpp 
