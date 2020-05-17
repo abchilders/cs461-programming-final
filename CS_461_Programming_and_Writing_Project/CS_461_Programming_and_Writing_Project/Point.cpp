@@ -3,6 +3,7 @@
 
 #include "Point.h"
 #include <iostream>
+#include <cmath>
 
 // default constructor
 Point::Point() : x(0), y(0) 
@@ -11,7 +12,7 @@ Point::Point() : x(0), y(0)
 }
 
 // constructor
-Point::Point(int a, int b) : x(a), y(b) 
+Point::Point(double a, double b) : x(a), y(b) 
 {   
   // empty body
 }

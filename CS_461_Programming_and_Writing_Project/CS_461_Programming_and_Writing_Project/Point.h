@@ -20,7 +20,7 @@ public:
     Point(); 
 
     // constructor 
-    Point(int a, int b); 
+    Point(double a, double b); 
 
     // copy constructor
     Point(const Point& p); 
