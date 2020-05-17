@@ -13,11 +13,17 @@ using namespace std;
 typedef Route(*Algorithm)(Tsp_map&);
 
 // the number of runs to do -- CHANGE THIS TO VARY THE NUMBER OF GRAPHS SOLVED
-const int TOTAL_RUNS = 10; 
+const int TOTAL_RUNS = 15; 
+const int MAX_RANDOM_GUESSES = 1000000; 
 
 // brute force algorithm for TSP 
 // outputs the best solution for the input map 
 Route brute_force_solver(Tsp_map& cities); 
+
+// Monte Carlo randomized algorithm for TSP 
+// randomly generates up to num_guesses permutations and selects the best 
+// solution out of those guesses
+Route random_guesser(Tsp_map& cities); 
 
 // input: takes a number of runs to do (so each run will be done on a map with 
 //  one more city than the last one, from 1 to number)
@@ -31,6 +37,7 @@ int main(void)
     // set up a list of solution algorithms  
     unordered_map<string, Algorithm> algorithms{}; 
     algorithms["Brute force"] = &brute_force_solver; 
+    algorithms["Randomized Monte Carlo"] = &random_guesser; 
 
     // run data collection using all algorithms 
     dataCollection(TOTAL_RUNS, algorithms); 
@@ -38,7 +45,8 @@ int main(void)
 	return 0; 
 }
  
-Route brute_force_solver(Tsp_map& cities) {
+Route brute_force_solver(Tsp_map& cities) 
+{
     // get the default route for this TSP map-- a starting list of all cities 
     Route route(cities.get_default_route());
 
@@ -49,9 +57,38 @@ Route brute_force_solver(Tsp_map& cities) {
     // then try all possible permutations of this list of cities on the route
     while (next_permutation(route.begin() + 1, route.end())) {
         double s = cities.score(route);
+        
         // if this route has a shorter distance than any previous one, we 
         // have a new best route 
-        if (s < best_score) {
+        if (s < best_score) 
+        {
+            best_score = s;
+            best_route = route;
+        }
+    }
+    return best_route;
+}
+
+Route random_guesser(Tsp_map& cities) 
+{
+    // get the default route for this TSP map-- a starting list of all cities 
+    Route route(cities.get_default_route());
+
+    // initialize the best score and best route to this initial route 
+    double best_score = cities.score(route);
+    Route best_route(route);
+
+    // known runtime-- randomly select num_guesses permutations of the map
+    for (int i = 0; i < MAX_RANDOM_GUESSES; ++i) 
+    {
+        // randomly order the cities on the route
+        random_shuffle(route.begin() + 1, route.end());
+        double s = cities.score(route);
+
+        // if this route has a shorter distance than any previous one, we 
+        // have a new best route
+        if (s < best_score) 
+        {
             best_score = s;
             best_route = route;
         }
