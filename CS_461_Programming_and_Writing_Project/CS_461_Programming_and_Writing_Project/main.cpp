@@ -13,8 +13,8 @@ using namespace std;
 typedef Route(*Algorithm)(Tsp_map&);
 
 // the number of runs to do -- CHANGE THIS TO VARY THE NUMBER OF GRAPHS SOLVED
-const int TOTAL_RUNS = 15; 
-const int MAX_RANDOM_GUESSES = 1000000; 
+const int TOTAL_RUNS = 12; 
+const int MAX_RANDOM_GUESSES = 500000; 
 
 // brute force algorithm for TSP 
 // outputs the best solution for the input map 
