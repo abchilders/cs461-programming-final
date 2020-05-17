@@ -5,7 +5,7 @@ Programming and writing project analyzing NP problems and ways to make their sol
 On the command line, from the directory containing all the *Files used* from below, enter the command to compile: 
 `g++ -std=c++11 main.cpp Point.cpp Tsp_map.cpp Generator.cpp Solver.cpp`
 Then, this should generate an executable called a.out. To run it, enter the command: 
-`a.out`
+`./a.out`
 
 ## Useful reference links 
 - C++ Code for TSP brute force algorithm and random permutation algorithm: https://www2.cs.sfu.ca/CourseCentral/125/tjd/tsp_example.html
