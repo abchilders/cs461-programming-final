@@ -1,0 +1,93 @@
+Would you like to enter a custom seed? (y/n)
+MAP SIZE 1
+======================
+
+Randomized Monte Carlo--
+Time taken: 10 ms
+Distance traveled on solution: 0
+
+MAP SIZE 2
+======================
+
+Randomized Monte Carlo--
+Time taken: 14 ms
+Distance traveled on solution: 102.215
+
+MAP SIZE 3
+======================
+
+Randomized Monte Carlo--
+Time taken: 31 ms
+Distance traveled on solution: 144.06
+
+MAP SIZE 4
+======================
+
+Randomized Monte Carlo--
+Time taken: 41 ms
+Distance traveled on solution: 231.842
+
+MAP SIZE 5
+======================
+
+Randomized Monte Carlo--
+Time taken: 52 ms
+Distance traveled on solution: 177.435
+
+MAP SIZE 6
+======================
+
+Randomized Monte Carlo--
+Time taken: 69 ms
+Distance traveled on solution: 325.093
+
+MAP SIZE 7
+======================
+
+Randomized Monte Carlo--
+Time taken: 84 ms
+Distance traveled on solution: 230.199
+
+MAP SIZE 8
+======================
+
+Randomized Monte Carlo--
+Time taken: 102 ms
+Distance traveled on solution: 266.818
+
+MAP SIZE 9
+======================
+
+Randomized Monte Carlo--
+Time taken: 112 ms
+Distance traveled on solution: 263.188
+
+MAP SIZE 10
+======================
+
+Randomized Monte Carlo--
+Time taken: 126 ms
+Distance traveled on solution: 266.569
+
+MAP SIZE 11
+======================
+
+Randomized Monte Carlo--
+Time taken: 141 ms
+Distance traveled on solution: 318.58
+
+MAP SIZE 12
+======================
+
+Randomized Monte Carlo--
+Time taken: 156 ms
+Distance traveled on solution: 340.074
+
+MAP SIZE 13
+======================
+
+Randomized Monte Carlo--
+Time taken: 169 ms
+Distance traveled on solution: 347.23
+
+-- This test was super fast -- 

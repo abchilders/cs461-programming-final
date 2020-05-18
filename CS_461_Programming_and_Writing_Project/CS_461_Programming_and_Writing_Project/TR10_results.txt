@@ -1,0 +1,111 @@
+Would you like to enter a custom seed? (y/n) 
+MAP SIZE 1
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 0
+
+Randomized Monte Carlo-- 
+Time taken: 38 ms
+Distance traveled on solution: 0
+
+MAP SIZE 2
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 67.4685
+
+Randomized Monte Carlo-- 
+Time taken: 47 ms
+Distance traveled on solution: 67.4685
+
+MAP SIZE 3
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 166.342
+
+Randomized Monte Carlo-- 
+Time taken: 112 ms
+Distance traveled on solution: 166.342
+
+MAP SIZE 4
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 102.179
+
+Randomized Monte Carlo-- 
+Time taken: 173 ms
+Distance traveled on solution: 102.179
+
+MAP SIZE 5
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 174.669
+
+Randomized Monte Carlo-- 
+Time taken: 227 ms
+Distance traveled on solution: 174.669
+
+MAP SIZE 6
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 205.977
+
+Randomized Monte Carlo-- 
+Time taken: 299 ms
+Distance traveled on solution: 205.977
+
+MAP SIZE 7
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 216.139
+
+Randomized Monte Carlo-- 
+Time taken: 373 ms
+Distance traveled on solution: 216.139
+
+MAP SIZE 8
+======================
+
+Brute force-- 
+Time taken: 1 ms
+Distance traveled on solution: 288.084
+
+Randomized Monte Carlo-- 
+Time taken: 424 ms
+Distance traveled on solution: 288.084
+
+MAP SIZE 9
+======================
+
+Brute force-- 
+Time taken: 15 ms
+Distance traveled on solution: 273.809
+
+Randomized Monte Carlo-- 
+Time taken: 472 ms
+Distance traveled on solution: 273.809
+
+MAP SIZE 10
+======================
+
+Brute force-- 
+Time taken: 154 ms
+Distance traveled on solution: 351.541
+
+Randomized Monte Carlo-- 
+Time taken: 541 ms
+Distance traveled on solution: 351.541
+

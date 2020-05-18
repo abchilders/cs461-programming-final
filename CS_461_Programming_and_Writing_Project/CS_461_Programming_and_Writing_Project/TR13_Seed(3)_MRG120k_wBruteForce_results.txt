@@ -1,0 +1,144 @@
+Would you like to enter a custom seed? (y/n) Enter an integer: 
+MAP SIZE 1
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 0
+
+Randomized Monte Carlo-- 
+Time taken: 11 ms
+Distance traveled on solution: 0
+
+MAP SIZE 2
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 42.19
+
+Randomized Monte Carlo-- 
+Time taken: 14 ms
+Distance traveled on solution: 42.19
+
+MAP SIZE 3
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 100.472
+
+Randomized Monte Carlo-- 
+Time taken: 31 ms
+Distance traveled on solution: 100.472
+
+MAP SIZE 4
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 139.363
+
+Randomized Monte Carlo-- 
+Time taken: 41 ms
+Distance traveled on solution: 139.363
+
+MAP SIZE 5
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 266.178
+
+Randomized Monte Carlo-- 
+Time taken: 54 ms
+Distance traveled on solution: 266.178
+
+MAP SIZE 6
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 296.365
+
+Randomized Monte Carlo-- 
+Time taken: 71 ms
+Distance traveled on solution: 296.365
+
+MAP SIZE 7
+======================
+
+Brute force-- 
+Time taken: 0 ms
+Distance traveled on solution: 248.818
+
+Randomized Monte Carlo-- 
+Time taken: 86 ms
+Distance traveled on solution: 248.818
+
+MAP SIZE 8
+======================
+
+Brute force-- 
+Time taken: 1 ms
+Distance traveled on solution: 350.574
+
+Randomized Monte Carlo-- 
+Time taken: 101 ms
+Distance traveled on solution: 350.574
+
+MAP SIZE 9
+======================
+
+Brute force-- 
+Time taken: 15 ms
+Distance traveled on solution: 283.935
+
+Randomized Monte Carlo-- 
+Time taken: 114 ms
+Distance traveled on solution: 283.935
+
+MAP SIZE 10
+======================
+
+Brute force-- 
+Time taken: 150 ms
+Distance traveled on solution: 278.851
+
+Randomized Monte Carlo-- 
+Time taken: 126 ms
+Distance traveled on solution: 278.851
+
+MAP SIZE 11
+======================
+
+Brute force-- 
+Time taken: 1616 ms
+Distance traveled on solution: 297.778
+
+Randomized Monte Carlo-- 
+Time taken: 144 ms
+Distance traveled on solution: 325.19
+
+MAP SIZE 12
+======================
+
+Brute force-- 
+Time taken: 18954 ms
+Distance traveled on solution: 285.532
+
+Randomized Monte Carlo-- 
+Time taken: 156 ms
+Distance traveled on solution: 311.438
+
+MAP SIZE 13
+======================
+
+Brute force-- 
+Time taken: 241246 ms
+Distance traveled on solution: 346.854
+
+Randomized Monte Carlo-- 
+Time taken: 170 ms
+Distance traveled on solution: 417.648
+
