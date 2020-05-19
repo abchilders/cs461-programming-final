@@ -13,8 +13,8 @@ using namespace std;
 typedef Route(*Algorithm)(Tsp_map&);
 
 // the number of runs to do -- CHANGE THIS TO VARY THE NUMBER OF GRAPHS SOLVED
-const int TOTAL_RUNS = 13;
-const int MAX_RANDOM_GUESSES = 120000;
+const int TOTAL_RUNS = 13; 
+const int MAX_RANDOM_GUESSES = 120000; 
 
 // brute force algorithm for TSP
 // outputs the best solution for the input map
@@ -27,17 +27,30 @@ Route random_guesser(Tsp_map& cities);
 
 // input: takes a number of runs to do (so each run will be done on a map with
 //  one more city than the last one, from 1 to number)
-// side effect: runs the given algorithm on the problem with increasing sizes,
+// side effect: runs the given algorithms on the problem with increasing sizes,
 //  then outputs the algorithm used, size, and runtime of each run to the
 //  screen
 void dataCollection(int total_runs, unordered_map<string, Algorithm> algorithms);
 
-int main(void)
-{
-    // set up a list of solution algorithms
-    unordered_map<string, Algorithm> algorithms{};
-    algorithms["Brute force"] = &brute_force_solver;
-    algorithms["Randomized Monte Carlo"] = &random_guesser;
+// test suite to ensure that boundary conditions don't cause program failure
+void testSuite();
+
+int main(void) 
+{   
+    // TEST SUITE 
+    char run_test = 'n'; 
+    cout << "Run test suite? (y/n) "; 
+    cin >> run_test; 
+    if (run_test == 'y')
+    {
+        testSuite();
+    }
+
+    // DATA COLLECTION
+    // set up a list of solution algorithms  
+    unordered_map<string, Algorithm> algorithms{}; 
+    algorithms["Brute force"] = &brute_force_solver; 
+    algorithms["Randomized Monte Carlo"] = &random_guesser; 
 
     // run data collection using all algorithms
     dataCollection(TOTAL_RUNS, algorithms);
@@ -53,6 +66,12 @@ Route brute_force_solver(Tsp_map& cities)
     // initialize the best score and best route to this initial route
     double best_score = cities.score(route);
     Route best_route(route);
+
+    // if the map has no cities, there doesn't exist any route, really
+    if (cities.size() == 0)
+    {
+        return best_route;
+    }
 
     // then try all possible permutations of this list of cities on the route
     while (next_permutation(route.begin() + 1, route.end())) {
@@ -78,6 +97,12 @@ Route random_guesser(Tsp_map& cities)
     double best_score = cities.score(route);
     Route best_route(route);
 
+    // if the map has no cities, there doesn't exist any route, really
+    if (cities.size() == 0)
+    {
+        return best_route;
+    }
+
     // known runtime-- randomly select num_guesses permutations of the map
     for (int i = 0; i < MAX_RANDOM_GUESSES; ++i)
     {
@@ -98,8 +123,24 @@ Route random_guesser(Tsp_map& cities)
 
 void dataCollection(int total_runs, unordered_map<string, Algorithm> algorithms)
 {
-    // get seed from user
+    // verify number of runs and algorithms given 
+    if (total_runs < 1)
+    {
+        cout << "Invalid number of runs given. Please enter one or more." << endl; 
+        return; 
+    }
+
+    if (algorithms.size() < 1)
+    {
+        cout << "No algorithms given to run." << endl; 
+        return; 
+    }
+
+    // get seed from user 
     // prompt user for seed
+    // NOTE: using the same seed every time produces the same maps each time; 
+    //  opting not to enter a seed causes it to be seeded from the current time
+    //  --> randomly generates new maps 
     char enter_seed;
     int new_seed = time(NULL);
     cout << "Would you like to enter a custom seed? (y/n) ";
@@ -133,4 +174,197 @@ void dataCollection(int total_runs, unordered_map<string, Algorithm> algorithms)
             cout << endl;
         }
     }
+}
+
+/* Test suite below. */
+void testSuite()
+{
+    bool all_tests_passed = true; 
+
+    // tests generator handling of size 0 
+    Generator test_gen; 
+    Tsp_map test_map = test_gen.generateTspMap(); 
+
+    cout << "* testing generator that generates a map of size 0: "; 
+    // a Generator that is not given a size should create a map with 0 nodes
+    if (test_map.size() == 0)
+    {
+        cout << "ok"; 
+    }
+    else
+    {
+        cout << "FAILED"; 
+        all_tests_passed = false; 
+    }
+    cout << endl; 
+    
+    // testing algorithms when given empty Tsp_map as input-- 0 nodes 
+    cout << "* testing brute_force_solver on an empty map: ";
+    Route brute_force_soln = brute_force_solver(test_map); 
+    // the optimal route for a map with 0 nodes should also have 0 items 
+    if (brute_force_soln.size() == 0)
+    {
+        cout << "ok"; 
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl; 
+
+    cout << "* testing random_guesser on an empty map: ";
+    Route random_soln = random_guesser(test_map);
+    // the optimal route for a map with 0 nodes should also have 0 items 
+    if (random_soln.size() == 0)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl; 
+    
+    // Testing Tsp_map functions on empty or invalid input 
+    
+    // set up a second Tsp_map with nodes, an empty route, and invalid routes 
+    Tsp_map map_with_nodes; 
+    // adding nodes to the map using both versions of add()
+    Point test_point(2, 1);  
+    map_with_nodes.add(test_point); 
+    map_with_nodes.add(3, 4);
+    map_with_nodes.add(6, 6); 
+
+    Route empty_route = {}; 
+    Route too_few_nodes_route = { 0, 1 };
+    Route too_many_nodes_route = { 0, 3, 2, 4, 1 }; 
+    Route contains_nonexistent_nodes_route = { 0, 2, 12 }; 
+
+    cout << "* testing score() on an empty route-- " << endl;
+    cout << "\t* empty map: "; 
+    double test_score_empty = test_map.score(empty_route); 
+    // the score is invalid, so it should be -1 
+    if (test_score_empty == -1)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl; 
+    cout << "\t* map with nodes: "; 
+    double test_score_nonempty = map_with_nodes.score(empty_route); 
+    // the score is invalid, so it should be -1 
+    if (test_score_nonempty == -1)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl; 
+
+    cout << "* testing score() on a route with too few nodes: "; 
+    double test_score = map_with_nodes.score(too_few_nodes_route); 
+    // invalid TSP route-- the problem requires all nodes to be visited 
+    if (test_score == -1)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl;
+
+    cout << "* testing score() on a route with too many nodes-- " << endl;
+    cout << "\t* empty map: ";
+    // invalid TSP route-- this map has no nodes
+    if (test_score == -1)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl;
+    cout << "\t* map with nodes: "; 
+    test_score = map_with_nodes.score(too_many_nodes_route);
+    // invalid TSP route-- each node must be in the map, and must be visited at
+    // most once 
+    if (test_score == -1)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl;
+
+    cout << "* testing score() on a route with invalid nodes: ";
+    test_score = map_with_nodes.score(contains_nonexistent_nodes_route);
+    // invalid TSP route-- each node must be in the map
+    if (test_score == -1)
+    {
+        cout << "ok";
+    }
+    else
+    {
+        cout << "FAILED";
+        all_tests_passed = false;
+    }
+    cout << endl;
+
+    cout << "* testing distBetween() with invalid nodes: ";
+    double dist_between = map_with_nodes.dist_between(2, 3);
+    // node 3 doesn't exist in map_with_nodes, so we should get an invalid 
+    // response back 
+    if (dist_between == -1)
+    {
+        cout << "ok"; 
+    }
+    else
+    {
+        cout << "FAILED"; 
+        all_tests_passed = false;
+    }
+    cout << endl; 
+
+    cout << endl << "TEST RESULTS: " << endl; 
+    if (all_tests_passed)
+    {
+        cout << "All tests with non-void output passed." << endl; 
+    }
+    else
+    {
+        cout << "!!! At least one test failed!" << endl; 
+    }
+    cout << "Please inspect the remaining tests visually for correctness.";
+    cout << endl << endl; 
+
+    cout << "testing solver--" << endl; 
+    cout << "* expected output: distance traveled = -1: " << endl;
+    Solver::solve(test_map, &brute_force_solver);
+    cout << endl; 
+
+    cout << "testing dataCollection()--" << endl; 
+    
+    cout << "* expected: output showing invalid number of runs given" << endl; 
+    unordered_map<string, Algorithm> algorithms{};
+    dataCollection(0, algorithms); 
+
+    cout << "* expected: output showing no algorithms given" << endl;
+    dataCollection(1, algorithms); 
+    cout << endl; 
 }
