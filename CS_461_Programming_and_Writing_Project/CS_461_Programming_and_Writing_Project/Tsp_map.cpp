@@ -2,6 +2,7 @@
 // https://www2.cs.sfu.ca/CourseCentral/125/tjd/tsp_example.html
 
 #include <vector>
+#include <unordered_map>
 #include "Tsp_map.h"
 #include "Point.h"
 
@@ -41,6 +42,12 @@ vector<Point> Tsp_map::getCities()
 // calculate the distance between cities i and j 
 double Tsp_map::dist_between(int i, int j)
 {
+	// check if i and j are valid cities in the map  
+	if ((i >= cities.size()) || (j >= cities.size()))
+	{
+		return -1; 
+	}
+
 	// each city is represented by its index in the vector of cities 
 	double distance = dist(cities[i], cities[j]);  // dist is from Point.
 	return distance; 
@@ -49,6 +56,38 @@ double Tsp_map::dist_between(int i, int j)
 // calculate the score (total distance traveled) of the given route 
 double Tsp_map::score(Route& route)
 {
+	// Check if route is valid: 
+	// the route must have the same number of cities as the Tsp_map does,
+	//	and the map must have at least one city in it 
+	if ((route.size() != cities.size()) || (cities.size() == 0))
+	{
+		return -1; 
+	}
+
+	// initialize hashtable representing all the cities that should be on the 
+	//	route for this map 
+	//  key = city, value = flag denoting a node's presence 
+	unordered_map<int, bool> expected_cities_seen{}; 
+	for (int i = 0; i < cities.size(); i++)
+	{
+		expected_cities_seen[i] = false; 
+	}
+	// then check if all the expected cities are in the Route 
+	for (auto city : route)
+	{
+		expected_cities_seen[city] = true; 
+	}
+	// finally, iterate through hashtable and see if any cities weren't 
+	// included on the route 
+	for (auto city : expected_cities_seen)
+	{
+		if (city.second == false)
+		{
+			return -1; 
+		}
+	}
+
+	// Score calculation: 
 	// calculate distance between start and end city, to complete the circuit
 	double result = dist_between(route[0], route[size() - 1]);
 
